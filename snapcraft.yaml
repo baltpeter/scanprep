@@ -1,0 +1,22 @@
+name: scanprep
+version: git
+summary: Small utility to prepare scanned documents.
+description: |
+  Scanprep can be used to prepare scanned documents for further processing with existing tools (like the great OCRmyPDF) or directly for archival. It allows splitting multiple documents that were scanned in a single batch into multiple files. In addition, it can also remove blank pages from the output (this is especially helpful if using a duplex scanner).
+
+  For document separation, separator pages need to be inserted between the different documents before scanning. These pages tell the program where to split. You can either use the included separator page or create your own. The separator page simply needs to have a barcode that encodes the text SCANPREP_SEP (you can use any barcode type supported by zbar).
+confinement: strict
+grade: stable
+base: core18
+parts:
+  scanprep:
+    plugin: python
+    source: .
+    stage-packages:
+      - libzbar-dev
+
+apps:
+  scanprep:
+    command: scanprep
+    plugs:
+      - home

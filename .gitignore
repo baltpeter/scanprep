@@ -2,6 +2,7 @@ tmp/
 *.tmp
 tmp.*
 separator-page.indd
+*.snap
 
 # Created by https://www.toptal.com/developers/gitignore/api/linux,macos,windows,visualstudiocode,sublimetext,jetbrains+all,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,macos,windows,visualstudiocode,sublimetext,jetbrains+all,python
