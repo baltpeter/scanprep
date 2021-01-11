@@ -79,7 +79,7 @@ class ActionNoYes(argparse.Action):
             setattr(namespace, self.dest, True)
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('input_pdf', help='The PDF document to process.')
     parser.add_argument(
@@ -92,3 +92,7 @@ if __name__ == '__main__':
 
     emit_new_documents(fitz.open(os.path.abspath(args.input_pdf)), os.path.basename(
         args.input_pdf), os.path.abspath(args.output_dir), args.separate, args.remove_blank)
+
+
+if __name__ == '__main__':
+    main()

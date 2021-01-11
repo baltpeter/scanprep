@@ -10,23 +10,41 @@ For document separation, separator pages need to be inserted between the differe
 
 ## Installation
 
+### Via PyPI
+
+You can simply install scanprep using `pip` (consider doing that in a venv):
+
+```sh
+pip3 install scanprep
+
+# If you see an error like "ImportError: Unable to find zbar shared library", you need to install zbar yourself. See: https://pypi.org/project/pyzbar/
+scanprep -h
+```
+
 ### From source
 
-To install scanprep from source, simply clone this repository and install the dependencies:
+To install scanprep from source, clone this repository and install the dependencies:
 
 ```sh
 git clone https://github.com/baltpeter/scanprep.git
 cd scanprep
-pip install -r requirements.txt # You may want to do this in a venv.
+pip3 install -r requirements.txt # You may want to do this in a venv.
 # You may also need to install the zbar shared library. See: https://pypi.org/project/pyzbar/
 
-python3 scanprep.py -h
+python3 scanprep/scanprep.py -h
 ```
 
 ## Usage
 
+Most simply, you can run scanprep via `scanprep <filename.pdf>`. This will process the input file and output the results into your current working directory. To specify a different output directory, use `scanprep <filename.pdf> <output_directory>`.  
+The output files will be called `0-<filename.pdf>`, `1-<filename.pdf>`, and so on.
+
+By default, both page separation and blank page removal will be performed. To turn them off, use `--no-page-separation` or `--no-blank-removal`, respectively.
+
+Use `scanprep -h` to show the help:
+
 ```
-usage: scanprep.py [-h] [--page-separation] [--blank-removal] input_pdf [output_dir]
+usage: scanprep [-h] [--page-separation] [--blank-removal] input_pdf [output_dir]
 
 positional arguments:
   input_pdf             The PDF document to process.
@@ -44,4 +62,4 @@ optional arguments:
 
 ## License
 
-Scanprep is licensed under the MIT license, see the `LICENSE` file for details. Issues and pull requests are welcome!
+Scanprep is licensed under the MIT license, see the [`LICENSE`](/LICENSE) file for details. Issues and pull requests are welcome!
