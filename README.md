@@ -10,9 +10,19 @@ For document separation, separator pages need to be inserted between the differe
 
 ## Installation
 
+### Via Snap
+
+You can install scanprep from the [Snap Store](https://snapcraft.io/scanprep):
+
+```sh
+snap install scanprep
+
+scanprep -h
+```
+
 ### Via PyPI
 
-You can simply install scanprep using `pip` (consider doing that in a venv):
+You can install scanprep using `pip` (consider doing that in a venv):
 
 ```sh
 pip3 install scanprep

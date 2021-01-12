@@ -8,6 +8,8 @@ description: |
 confinement: strict
 grade: stable
 base: core18
+architectures:
+  - build-on: amd64
 parts:
   scanprep:
     plugin: python

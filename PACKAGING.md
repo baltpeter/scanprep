@@ -15,3 +15,7 @@ Prerequisites: `python3 -m pip install --user --upgrade setuptools wheel twine`
 * <https://stackoverflow.com/a/49684835>
 * <https://packaging.python.org/tutorials/packaging-projects/>
 * <https://python-packaging.readthedocs.io/en/latest/command-line-scripts.html>
+
+## Snap
+
+Updates to the snap are built automatically once pushed to GitHub.
