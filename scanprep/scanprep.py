@@ -3,6 +3,7 @@ import fitz
 from PIL import Image, ImageFilter, ImageStat
 import numpy as np
 import os
+import pathlib
 from pyzbar.pyzbar import decode
 
 
@@ -57,6 +58,8 @@ def get_new_docs_pages(doc, separate=True, remove_blank=True):
 
 
 def emit_new_documents(doc, filename, out_dir, separate=True, remove_blank=True):
+    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)
+
     new_docs = get_new_docs_pages(doc, separate, remove_blank)
     for i, pages in enumerate(new_docs):
         new_doc = fitz.open()  # Will create a new, blank document.
