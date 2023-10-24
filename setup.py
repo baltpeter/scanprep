@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="scanprep",
-    version="1.0.2",
+    version="1.0.3",
     author="Benjamin Altpeter",
     author_email="hi@bn.al",
     description="Small utility to prepare scanned documents. Supports separating PDF files by separator pages and removing blank pages.",
@@ -23,9 +23,9 @@ setuptools.setup(
     ],
     python_requires='>=3.6',
     install_requires=[
-        'numpy==1.19.5',
-        'pillow==8.1.0',
-        'pymupdf==1.18.6',
-        'pyzbar==0.1.8'
+        'numpy==1.26.1',
+        'pillow==10.1.0',
+        'pymupdf==1.23.5',
+        'pyzbar==0.1.9'
     ]
 )

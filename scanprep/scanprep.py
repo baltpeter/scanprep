@@ -42,7 +42,7 @@ def get_new_docs_pages(doc, separate=True, remove_blank=True):
     docs = [[]]
 
     for page in doc:
-        pixmap = page.getPixmap()
+        pixmap = page.get_pixmap()
         img = Image.frombytes(
             "RGB", (pixmap.width, pixmap.height), pixmap.samples)
 
@@ -64,7 +64,7 @@ def emit_new_documents(doc, filename, out_dir, separate=True, remove_blank=True)
     for i, pages in enumerate(new_docs):
         new_doc = fitz.open()  # Will create a new, blank document.
         for j, page_no in enumerate(pages):
-            new_doc.insertPDF(doc, from_page=page_no,
+            new_doc.insert_pdf(doc, from_page=page_no,
                               to_page=page_no, final=(j == len(pages) - 1))
         new_doc.save(os.path.join(out_dir, f"{i}-{filename}"))
 
