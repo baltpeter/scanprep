@@ -32,23 +32,33 @@ def page_is_empty(img):
 
 def page_is_separator(img):
     detected_barcodes = decode(img)
+    count = 0
     for barcode in detected_barcodes:
         if barcode.data == b'SCANPREP_SEP':
-            return True
-    return False
+            count += 1
+    return count
 
 
 def get_new_docs_pages(doc, separate=True, remove_blank=True):
     docs = [[]]
 
     for page in doc:
-        pixmap = page.getPixmap()
+        pixmap = page.get_pixmap()
         img = Image.frombytes(
             "RGB", (pixmap.width, pixmap.height), pixmap.samples)
 
-        if separate and page_is_separator(img):
-            docs.append([])
-            continue
+        if separate:
+            qr_count = page_is_separator(img)
+            if qr_count > 1:
+                # Multiple QR codes - delete this separator page
+                docs.append([])
+                continue
+            elif qr_count == 1:
+                # Single QR code - keep the page but start a new document
+                docs[-1].append(page.number)
+                docs.append([])
+                continue
+
         if remove_blank and page_is_empty(img):
             continue
 
@@ -64,7 +74,7 @@ def emit_new_documents(doc, filename, out_dir, separate=True, remove_blank=True)
     for i, pages in enumerate(new_docs):
         new_doc = fitz.open()  # Will create a new, blank document.
         for j, page_no in enumerate(pages):
-            new_doc.insertPDF(doc, from_page=page_no,
+            new_doc.insert_pdf(doc, from_page=page_no,
                               to_page=page_no, final=(j == len(pages) - 1))
         new_doc.save(os.path.join(out_dir, f"{i}-{filename}"))
 
